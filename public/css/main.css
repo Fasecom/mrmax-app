@@ -1,0 +1,13 @@
+footer {
+    padding: 30px;
+}
+
+main {
+    margin: 10px 10px 0 10px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
