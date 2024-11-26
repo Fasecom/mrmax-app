@@ -19,7 +19,10 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('array') }}">Массивы</a>
+                            <a class="nav-link" href="{{ route('array') }}">Карточки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reports') }}">Репорты</a>
                         </li>
                     </ul>
                 </div>
