@@ -22,16 +22,32 @@ class ReportController extends Controller
     
     public function store(Request $request)
     {
-        // Валидация данных
         $data = $request->validate([
-            'description' => 'required|string|max:255', // Указаны корректные правила валидации
+            'description' => 'required|string|max:20',
         ]);
 
         $data['number'] = uniqid();
-
+    
         Report::create($data);
+    
+        //return redirect()->route('reports.index');
         return redirect()->back();
     }
     
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'id' => 'required|exists:reports,id',
+            'description' => 'required|string|max:20',
+        ]);
+    
+        $report = Report::findOrFail($data['id']);
+    
+        $report->update(['description' => $data['description']]);
+    
+        // Перенаправить обратно с сообщением об успехе
+        return redirect()->back();
+    }
+
     
 }
