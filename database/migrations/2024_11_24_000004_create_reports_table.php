@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->text('description');
+            $table->string('number')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('status_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
         });
     }
 
