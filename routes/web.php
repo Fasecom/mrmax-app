@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ReportController;
+use App\Http\Middleware\Admin;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,3 +33,8 @@ Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 Route::delete('/reports/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
 Route::post('/reports', [ReportController::class, 'store'])->name('reports.store');
 Route::put('/reports/update', [ReportController::class, 'update'])->name('reports.update');
+
+Route::middleware((Admin::class))->group(function () {
+    Route::get('/admin', [AdminController::class,'index'])->name('admin.index');
+});
+
